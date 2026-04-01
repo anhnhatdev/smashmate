@@ -1,0 +1,131 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// =======================
+// 1. NEXTAUTH CORE TABLES
+// =======================
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+
+  // Custom SmashMate Fields
+  phone         String?
+  fbLink        String?
+  level         String?
+  address       String?
+  role          String    @default("USER")
+
+  accounts      Account[]
+  sessions      Session[]
+  posts         Post[]
+  interests     Interest[]
+  reminders     Reminder[]
+}
+
+// =======================
+// 2. SMASHMATE POSTS
+// =======================
+model Post {
+  id            String   @id @default(cuid())
+
+  postType      String   @default("tuyen-keo") // tuyen-keo | pass-san | lop-day | mua-ban
+  courtName     String?
+
+  eventDate     DateTime
+  startTime     String
+  endTime       String
+
+  targetGender  String   @default("all") // all | male | female
+
+  maleSlots     Int      @default(0)
+  maleFee       Int      @default(0)
+  maleLevels    String[]
+
+  femaleSlots   Int      @default(0)
+  femaleFee     Int      @default(0)
+  femaleLevels  String[]
+
+  contactPhone  String?
+  contactFb     String?
+  notes         String?  @db.Text
+
+  status        String   @default("OPEN") // OPEN | CLOSED | EXPIRED
+
+  authorId      String
+  author        User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  interests     Interest[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// =======================
+// 3. INTERESTS (BOOKMARKS)
+// =======================
+model Interest {
+  id        String   @id @default(cuid())
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+}
+
+// =======================
+// 4. REMINDERS
+// =======================
+model Reminder {
+  id          String   @id @default(cuid())
+  userId      String
+  label       String   // e.g. "Tối thứ 3 mỗi tuần"
+  daysOfWeek  Int[]    // 0=Sun, 1=Mon, ..., 6=Sat
+  timeFrom    String   // "18:00"
+  timeTo      String   // "22:00"
+  levels      String[]
+  radius      Int?     // km radius (null = no filter)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
