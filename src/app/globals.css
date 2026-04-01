@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #f8fafc;
+    color: #0f172a;
+  }
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(90deg, #38bdf8, #8b5cf6, #d97706);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Primary button shadow */
+.btn-primary {
+  box-shadow: 0 4px 14px 0 rgba(14, 165, 233, 0.39);
+}
+
+/* Hero section radial gradient */
+.hero-gradient {
+  background: radial-gradient(circle at 50% -20%, rgba(14, 165, 233, 0.15), transparent 60%);
+}
+
+/* AI floating button glow */
+.ai-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
