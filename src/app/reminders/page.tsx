@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 
 const DAYS   = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
-const LEVELS = ['Y','Y+','TBY','TBY+','TB-','TB','TB+','TB++','TBK','Kh\u00e1'];
+const LEVELS = ['Y','Y+','TBY','TBY+','TB-','TB','TB+','TB++','TBK','Khá'];
 
 export default function RemindersPage() {
   const { data: session } = useSession();
@@ -45,7 +45,7 @@ export default function RemindersPage() {
 
   const handleCreate = async () => {
     if (!formLabel || formDays.length === 0 || !formTimeFrom || !formTimeTo) {
-      alert('Vui l\u00f2ng \u0111i\u1ec1n \u0111\u1ea7y \u0111\u1ee7 th\u00f4ng tin');
+      alert('Vui lòng điền đầy đủ thông tin');
       return;
     }
     try {
@@ -78,7 +78,7 @@ export default function RemindersPage() {
   };
 
   const deleteReminder = async (id: string) => {
-    if (!confirm('X\u00f3a nh\u1eafc l\u1ecbch n\u00e0y?')) return;
+    if (!confirm('Xóa nhắc lịch này?')) return;
     try {
       const res = await fetch(`/api/reminders/${id}`, { method: 'DELETE' });
       if (res.ok) setReminders(prev => prev.filter(r => r.id !== id));
@@ -97,9 +97,9 @@ export default function RemindersPage() {
           <div className="flex items-start gap-4">
             <Bell className="w-8 h-8 stroke-[1.5] mt-1" />
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold mb-1">Nh\u1eafc l\u1ecbch ch\u01a1i c\u1ea7u</h1>
+              <h1 className="text-2xl md:text-3xl font-bold mb-1">Nhắc lịch chơi cầu</h1>
               <p className="text-indigo-100 font-medium text-sm">
-                {reminders.filter(r => r.active).length} nh\u1eafc l\u1ecbch \u0111ang b\u1eadt \u2022 {matchedPosts.length} b\u00e0i ph\u00f9 h\u1ee3p
+                {reminders.filter(r => r.active).length} nhắc lịch đang bật • {matchedPosts.length} bài phù hợp
               </p>
             </div>
           </div>
@@ -113,34 +113,34 @@ export default function RemindersPage() {
           {/* ── LEFT: Reminder list ── */}
           <div className="w-full lg:w-[38%] flex-shrink-0">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="font-bold text-slate-800 text-base">Danh s\u00e1ch nh\u1eafc l\u1ecbch</h2>
+              <h2 className="font-bold text-slate-800 text-base">Danh sách nhắc lịch</h2>
               <button
                 id="btn-create-reminder"
                 onClick={() => setIsCreating(p => !p)}
                 className="bg-[#6366f1] text-white hover:bg-indigo-700 px-4 py-1.5 rounded-full text-xs font-bold transition flex items-center gap-1 shadow-sm"
               >
-                <Plus className="w-3.5 h-3.5" /> T\u1ea1o m\u1edbi
+                <Plus className="w-3.5 h-3.5" /> Tạo mới
               </button>
             </div>
 
             {/* Create form */}
             {isCreating && (
               <div className="bg-white border border-indigo-100 rounded-2xl p-5 mb-4 shadow-sm">
-                <h3 className="font-bold text-slate-800 mb-4">Nh\u1eafc l\u1ecbch m\u1edbi</h3>
+                <h3 className="font-bold text-slate-800 mb-4">Nhắc lịch mới</h3>
 
                 <div className="mb-3">
-                  <label className="text-xs font-bold text-slate-600 mb-1 block">T\u00ean nh\u1eafc l\u1ecbch</label>
+                  <label className="text-xs font-bold text-slate-600 mb-1 block">Tên nhắc lịch</label>
                   <input
                     id="reminder-label"
                     value={formLabel}
                     onChange={e => setFormLabel(e.target.value)}
-                    placeholder="V\u00ed d\u1ee5: T\u1ed1i T3 v\u00e0 T5 m\u1ed7i tu\u1ea7n"
+                    placeholder="Ví dụ: Tối T3 và T5 mỗi tuần"
                     className="w-full border border-slate-200 rounded-xl px-3 py-2 text-sm outline-none focus:border-indigo-400"
                   />
                 </div>
 
                 <div className="mb-3">
-                  <label className="text-xs font-bold text-slate-600 mb-2 block">Ng\u00e0y trong tu\u1ea7n</label>
+                  <label className="text-xs font-bold text-slate-600 mb-2 block">Ngày trong tuần</label>
                   <div className="flex flex-wrap gap-1.5">
                     {DAYS.map((d, i) => (
                       <button
@@ -160,7 +160,7 @@ export default function RemindersPage() {
                 </div>
 
                 <div className="mb-3 flex gap-2">
-                  {[['reminder-from', formTimeFrom, setFormTimeFrom, 'T\u1eeb'], ['reminder-to', formTimeTo, setFormTimeTo, '\u0110\u1ebfn']].map(([id, val, setter, label]: any) => (
+                  {[['reminder-from', formTimeFrom, setFormTimeFrom, 'Từ'], ['reminder-to', formTimeTo, setFormTimeTo, 'Đến']].map(([id, val, setter, label]: any) => (
                     <div key={id} className="flex-1">
                       <label className="text-xs font-bold text-slate-600 mb-1 block">{label}</label>
                       <input
@@ -175,7 +175,7 @@ export default function RemindersPage() {
                 </div>
 
                 <div className="mb-4">
-                  <label className="text-xs font-bold text-slate-600 mb-2 block">Tr\u00ecnh \u0111\u1ed9 (kh\u00f4ng b\u1eaft bu\u1ed9c)</label>
+                  <label className="text-xs font-bold text-slate-600 mb-2 block">Trình độ (không bắt buộc)</label>
                   <div className="flex flex-wrap gap-1.5">
                     {LEVELS.map(l => (
                       <button
@@ -196,10 +196,10 @@ export default function RemindersPage() {
 
                 <div className="flex gap-2">
                   <button onClick={handleCreate} className="flex-1 bg-indigo-500 text-white py-2.5 rounded-xl text-sm font-bold hover:bg-indigo-600 transition">
-                    T\u1ea1o nh\u1eafc l\u1ecbch
+                    Tạo nhắc lịch
                   </button>
                   <button onClick={() => setIsCreating(false)} className="flex-1 bg-slate-100 text-slate-700 py-2.5 rounded-xl text-sm font-bold hover:bg-slate-200 transition">
-                    H\u1ee7y
+                    Hủy
                   </button>
                 </div>
               </div>
@@ -209,14 +209,14 @@ export default function RemindersPage() {
             {!session ? (
               <div className="bg-slate-50 border border-slate-100 rounded-[2rem] p-8 flex flex-col items-center justify-center text-center h-[200px]">
                 <Bell className="w-10 h-10 text-slate-300 mb-3" />
-                <p className="text-slate-500 text-sm font-medium">\u0110\u0103ng nh\u1eadp \u0111\u1ec3 t\u1ea1o nh\u1eafc l\u1ecbch</p>
+                <p className="text-slate-500 text-sm font-medium">Đăng nhập để tạo nhắc lịch</p>
               </div>
             ) : reminders.length === 0 && !isCreating ? (
               <div className="bg-slate-50 border border-slate-100 rounded-[2rem] p-8 flex flex-col items-center justify-center text-center h-[280px]">
                 <Bell className="w-12 h-12 text-slate-300 stroke-[1.5] mb-4" />
-                <p className="text-slate-500 text-sm mb-4 font-medium">Ch\u01b0a c\u00f3 nh\u1eafc l\u1ecbch n\u00e0o</p>
+                <p className="text-slate-500 text-sm mb-4 font-medium">Chưa có nhắc lịch nào</p>
                 <button onClick={() => setIsCreating(true)} className="bg-white border border-slate-200 hover:border-slate-300 px-5 py-2.5 rounded-full font-bold text-xs text-slate-700 transition shadow-sm flex items-center gap-1">
-                  <Plus className="w-3.5 h-3.5" /> T\u1ea1o nh\u1eafc l\u1ecbch \u0111\u1ea7u ti\u00ean
+                  <Plus className="w-3.5 h-3.5" /> Tạo nhắc lịch đầu tiên
                 </button>
               </div>
             ) : (
@@ -238,7 +238,7 @@ export default function RemindersPage() {
                     </div>
                     <div className="flex flex-wrap gap-1 text-[11px] font-semibold text-slate-500">
                       <span className="bg-slate-100 px-2 py-0.5 rounded">{r.daysOfWeek.map((d: number) => DAYS[d]).join(', ')}</span>
-                      <span className="bg-slate-100 px-2 py-0.5 rounded">{r.timeFrom} \u2013 {r.timeTo}</span>
+                      <span className="bg-slate-100 px-2 py-0.5 rounded">{r.timeFrom} – {r.timeTo}</span>
                       {r.levels?.length > 0 && <span className="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded">{r.levels.join(', ')}</span>}
                     </div>
                   </div>
@@ -252,14 +252,14 @@ export default function RemindersPage() {
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-4">
               <h2 className="font-bold text-slate-800 text-base flex items-center gap-2">
                 <Sparkles className="w-4 h-4 fill-amber-500 text-amber-500" />
-                B\u00e0i \u0111\u0103ng ph\u00f9 h\u1ee3p ({matchedPosts.length})
+                Bài đăng phù hợp ({matchedPosts.length})
               </h2>
               <div className="flex items-center gap-2">
                 <button className="bg-white border border-slate-200 hover:bg-slate-50 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 flex items-center gap-1.5 shadow-sm transition">
-                  <MapPin className="w-3.5 h-3.5 text-slate-400" /> M\u1ecdi kho\u1ea3ng c\u00e1ch <ChevronDown className="w-3.5 h-3.5 text-slate-400 ml-1" />
+                  <MapPin className="w-3.5 h-3.5 text-slate-400" /> Mọi khoảng cách <ChevronDown className="w-3.5 h-3.5 text-slate-400 ml-1" />
                 </button>
                 <button className="bg-white border border-slate-200 hover:bg-slate-50 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 flex items-center gap-1.5 shadow-sm transition">
-                  <ArrowDownUp className="w-3.5 h-3.5 text-slate-400" /> Gi\u1edd s\u1edbm nh\u1ea5t <ChevronDown className="w-3.5 h-3.5 text-slate-400 ml-1" />
+                  <ArrowDownUp className="w-3.5 h-3.5 text-slate-400" /> Giờ sớm nhất <ChevronDown className="w-3.5 h-3.5 text-slate-400 ml-1" />
                 </button>
               </div>
             </div>
@@ -267,19 +267,19 @@ export default function RemindersPage() {
             {isLoading ? (
               <div className="flex flex-col items-center justify-center py-16 gap-4">
                 <div className="w-10 h-10 border-4 border-indigo-100 border-t-indigo-500 rounded-full animate-spin" />
-                <p className="text-slate-400 font-medium text-sm">\u0110ang t\u00ecm b\u00e0i ph\u00f9 h\u1ee3p...</p>
+                <p className="text-slate-400 font-medium text-sm">Đang tìm bài phù hợp...</p>
               </div>
             ) : matchedPosts.length === 0 ? (
               <div className="bg-white border-2 border-dashed border-slate-200 rounded-[2rem] p-8 lg:p-12 flex flex-col items-center justify-center text-center shadow-sm min-h-[280px]">
                 <XCircle className="w-10 h-10 text-slate-300 stroke-[1.5] mb-4" />
-                <h3 className="text-lg font-bold text-slate-800 mb-2">Ch\u01b0a c\u00f3 k\u1ebft qu\u1ea3 ph\u00f9 h\u1ee3p</h3>
-                <p className="text-slate-500 text-sm">B\u1eadt \u00edt nh\u1ea5t m\u1ed9t nh\u1eafc l\u1ecbch \u0111\u1ec3 xem b\u00e0i \u0111\u0103ng ph\u00f9 h\u1ee3p</p>
+                <h3 className="text-lg font-bold text-slate-800 mb-2">Chưa có kết quả phù hợp</h3>
+                <p className="text-slate-500 text-sm">Bật ít nhất một nhắc lịch để xem bài đăng phù hợp</p>
               </div>
             ) : (
               <div className="flex flex-col gap-3">
                 {matchedPosts.map((post: any) => (
                   <div key={post.id} className="bg-white border border-slate-200 rounded-2xl p-4 hover:border-indigo-200 transition shadow-sm hover:shadow-md">
-                    <h3 className="font-bold text-slate-800 mb-2">S\u00e2n {post.courtName || 'Ch\u01b0a c\u00f3 t\u00ean'}</h3>
+                    <h3 className="font-bold text-slate-800 mb-2">Sân {post.courtName || 'Chưa có tên'}</h3>
                     <div className="flex flex-wrap gap-4 text-sm text-slate-500 mb-3">
                       <div className="flex items-center gap-1.5 text-blue-600 font-medium">
                         <Calendar className="w-4 h-4" />
@@ -287,7 +287,7 @@ export default function RemindersPage() {
                       </div>
                       <div className="flex items-center gap-1.5">
                         <Clock className="w-4 h-4" />
-                        {post.startTime} \u2013 {post.endTime}
+                        {post.startTime} – {post.endTime}
                       </div>
                     </div>
                     <div className="flex gap-2 flex-wrap text-[11px]">
@@ -295,7 +295,7 @@ export default function RemindersPage() {
                         <span key={l} className="bg-blue-50 text-blue-600 px-2 py-0.5 rounded font-semibold">Nam {l}</span>
                       ))}
                       {post.femaleLevels?.map((l: string) => (
-                        <span key={l} className="bg-rose-50 text-rose-600 px-2 py-0.5 rounded font-semibold">N\u1eef {l}</span>
+                        <span key={l} className="bg-rose-50 text-rose-600 px-2 py-0.5 rounded font-semibold">Nữ {l}</span>
                       ))}
                     </div>
                   </div>

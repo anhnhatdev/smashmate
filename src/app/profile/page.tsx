@@ -6,7 +6,7 @@ import {
   Plus, Camera, Sparkles, Check, Edit3, Shield, Info, Zap, Trash2, Clock, Calendar
 } from 'lucide-react';
 
-const LEVELS = ['Y','Y+','TBY','TBY+','TB-','TB','TB+','TB++','TBK','Kh\u00e1'];
+const LEVELS = ['Y','Y+','TBY','TBY+','TB-','TB','TB+','TB++','TBK','Khá'];
 
 export default function ProfilePage() {
   const { data: session } = useSession();
@@ -53,29 +53,29 @@ export default function ProfilePage() {
       });
       const data = await res.json();
       if (data.success) {
-        setSaveMsg('\u2713 ' + data.message);
+        setSaveMsg('✓ ' + data.message);
         setTimeout(() => setSaveMsg(''), 3000);
       }
     } catch (err) {
-      setSaveMsg('L\u1ed7i khi l\u01b0u');
+      setSaveMsg('Lỗi khi lưu');
     } finally {
       setIsSaving(false);
     }
   };
 
   const deletePost = async (id: string) => {
-    if (!window.confirm('B\u1ea1n c\u00f3 ch\u1eafc ch\u1eafn mu\u1ed1n x\u00f3a b\u00e0i n\u00e0y?')) return;
+    if (!window.confirm('Bạn có chắc chắn muốn xóa bài này?')) return;
     try {
       const res = await fetch(`/api/posts/${id}`, { method: 'DELETE' });
       if (res.ok) setMyPosts(prev => prev.filter(p => p.id !== id));
-      else alert('L\u1ed7i khi x\u00f3a b\u00e0i');
+      else alert('Lỗi khi xóa bài');
     } catch (err) { console.error(err); }
   };
 
   const TABS = [
-    { id: 'ho-so',    label: 'H\u1ed3 s\u01a1' },
-    { id: 'bai-dang', label: 'B\u00e0i \u0111\u00e3 \u0111\u0103ng' },
-    { id: 'thong-ke', label: 'Th\u1ed1ng k\u00ea' },
+    { id: 'ho-so',    label: 'Hồ sơ' },
+    { id: 'bai-dang', label: 'Bài đã đăng' },
+    { id: 'thong-ke', label: 'Thống kê' },
   ];
 
   return (
@@ -102,11 +102,11 @@ export default function ProfilePage() {
         <div className="bg-gradient-to-r from-sky-500 to-blue-500 rounded-[2rem] p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-[0_8px_30px_rgba(14,165,233,0.2)] mb-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
           <div className="text-white relative z-10">
-            <h1 className="text-2xl md:text-3xl font-extrabold mb-2 tracking-tight">H\u1ed3 s\u01a1 c\u00e1 nh\u00e2n</h1>
-            <p className="text-blue-100 font-medium">Qu\u1ea3n l\u00fd th\u00f4ng tin c\u00e1 nh\u00e2n v\u00e0 c\u1ea5u h\u00ecnh li\u00ean h\u1ec7 hi\u1ec3n th\u1ecb tr\u00ean b\u00e0i \u0111\u0103ng.</p>
+            <h1 className="text-2xl md:text-3xl font-extrabold mb-2 tracking-tight">Hồ sơ cá nhân</h1>
+            <p className="text-blue-100 font-medium">Quản lý thông tin cá nhân và cấu hình liên hệ hiển thị trên bài đăng.</p>
           </div>
           <button className="flex-shrink-0 flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 border border-white/20 text-white px-6 py-3 rounded-xl font-bold transition shadow-sm backdrop-blur-md relative z-10">
-            <Plus className="w-5 h-5" /> T\u1ea1o b\u00e0i
+            <Plus className="w-5 h-5" /> Tạo bài
           </button>
         </div>
 
@@ -124,12 +124,12 @@ export default function ProfilePage() {
             </div>
           </div>
           <div className="flex-1 w-full">
-            <h2 className="text-2xl font-extrabold text-slate-800 mb-1 truncate">{session?.user?.name ?? 'Vui l\u00f2ng \u0111\u0103ng nh\u1eadp'}</h2>
+            <h2 className="text-2xl font-extrabold text-slate-800 mb-1 truncate">{session?.user?.name ?? 'Vui lòng đăng nhập'}</h2>
             <p className="text-slate-500 mb-4 truncate">{session?.user?.email ?? 'email@example.com'}</p>
             <div className="flex items-center justify-center md:justify-start gap-3">
               <span className="bg-slate-100 text-slate-600 border border-slate-200 px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-widest flex items-center shadow-inner">FREE</span>
               <button className="text-sky-500 text-xs font-bold flex items-center gap-1 hover:underline bg-sky-500/10 px-3 py-1.5 rounded-full transition hover:bg-sky-500/20">
-                <Sparkles className="w-3.5 h-3.5" /> N\u00e2ng c\u1ea5p Pro
+                <Sparkles className="w-3.5 h-3.5" /> Nâng cấp Pro
               </button>
             </div>
           </div>
@@ -138,9 +138,9 @@ export default function ProfilePage() {
         {/* Stats grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
           {[
-            { label: 'B\u00e0i \u0111\u0103ng h\u00f4m nay', value: 0, icon: <Info className="w-3.5 h-3.5" />, note: '\u0110\u00e3 d\u00f9ng trong gi\u1edbi h\u1ea1n 3 b\u00e0i/ng\u00e0y', accent: true },
-            { label: 'AI search h\u00f4m nay',   value: 0, icon: <Sparkles className="w-3.5 h-3.5" /> },
-            { label: 'Premium h\u00f4m nay',     value: 0, icon: <Zap className="w-3.5 h-3.5 text-amber-500" /> },
+            { label: 'Bài đăng hôm nay', value: 0, icon: <Info className="w-3.5 h-3.5" />, note: 'Đã dùng trong giới hạn 3 bài/ngày', accent: true },
+            { label: 'AI search hôm nay',   value: 0, icon: <Sparkles className="w-3.5 h-3.5" /> },
+            { label: 'Premium hôm nay',     value: 0, icon: <Zap className="w-3.5 h-3.5 text-amber-500" /> },
           ].map((stat, i) => (
             <div key={i} className={`bg-white border ${stat.accent ? 'border-blue-100' : 'border-slate-200'} rounded-[1.5rem] p-6 shadow-sm hover:border-slate-300 transition flex flex-col`}>
               <div className={`text-xs font-bold ${stat.accent ? 'text-sky-500' : 'text-slate-500'} mb-2 flex items-center gap-1.5 tracking-wide uppercase`}>
@@ -160,25 +160,25 @@ export default function ProfilePage() {
                 <Check className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="text-2xl font-extrabold text-slate-800 mb-1">Qu\u1ea3n l\u00fd B\u00e0i \u0111\u0103ng</h2>
-                <p className="text-slate-500 text-sm">Xem v\u00e0 ki\u1ec3m so\u00e1t c\u00e1c k\u00e8o \u0111\u1ea5u b\u1ea1n \u0111\u00e3 \u0111\u0103ng</p>
+                <h2 className="text-2xl font-extrabold text-slate-800 mb-1">Quản lý Bài đăng</h2>
+                <p className="text-slate-500 text-sm">Xem và kiểm soát các kèo đấu bạn đã đăng</p>
               </div>
             </div>
             {loadingPosts ? (
               <div className="py-12 flex flex-col items-center justify-center text-slate-400">
                 <div className="w-8 h-8 border-4 border-slate-200 border-t-sky-500 rounded-full animate-spin mb-3" />
-                <p className="font-medium text-sm">\u0110ang t\u1ea3i...</p>
+                <p className="font-medium text-sm">Đang tải...</p>
               </div>
             ) : myPosts.length === 0 ? (
               <div className="text-center py-10">
-                <p className="text-slate-500 font-medium">B\u1ea1n ch\u01b0a \u0111\u0103ng b\u00e0i tuy\u1ec3n k\u00e8o n\u00e0o.</p>
+                <p className="text-slate-500 font-medium">Bạn chưa đăng bài tuyển kèo nào.</p>
               </div>
             ) : (
               <div className="flex flex-col gap-4">
                 {myPosts.map(post => (
                   <div key={post.id} className="border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-blue-300 transition shadow-sm bg-slate-50/30">
                     <div className="flex flex-col gap-2">
-                      <h3 className="font-bold text-slate-800 text-lg">T\u00ecm K\u00e8o: s\u00e2n {post.courtName || 'Ch\u01b0a c\u00f3 t\u00ean'}</h3>
+                      <h3 className="font-bold text-slate-800 text-lg">Tìm Kèo: sân {post.courtName || 'Chưa có tên'}</h3>
                       <div className="flex items-center gap-4 text-sm font-medium text-slate-500">
                         <div className="flex items-center gap-1.5 text-blue-600"><Calendar className="w-4 h-4" /> {new Date(post.eventDate).toLocaleDateString('vi-VN')}</div>
                         <div className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> {post.startTime} - {post.endTime}</div>
@@ -186,14 +186,14 @@ export default function ProfilePage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <button className="px-4 py-2 bg-white border border-slate-200 text-slate-600 rounded-xl text-sm font-bold hover:bg-slate-50 transition shadow-sm flex items-center gap-1.5">
-                        <Edit3 className="w-4 h-4" /> S\u1eeda
+                        <Edit3 className="w-4 h-4" /> Sửa
                       </button>
                       <button
                         id={`delete-post-${post.id}`}
                         onClick={() => deletePost(post.id)}
                         className="px-4 py-2 bg-rose-50 border border-rose-100 text-rose-600 rounded-xl text-sm font-bold hover:bg-rose-100 transition shadow-sm flex items-center gap-1.5"
                       >
-                        <Trash2 className="w-4 h-4" /> X\u00f3a
+                        <Trash2 className="w-4 h-4" /> Xóa
                       </button>
                     </div>
                   </div>
@@ -211,25 +211,25 @@ export default function ProfilePage() {
                 <Edit3 className="w-6 h-6" />
               </div>
               <div>
-                <h2 className="text-2xl font-extrabold text-slate-800 mb-1">Th\u00f4ng tin h\u1ed3 s\u01a1</h2>
-                <p className="text-slate-500 text-sm">C\u1eadp nh\u1eadt th\u00f4ng tin \u0111\u1ec3 k\u1ebft b\u1ea1n d\u1ec5 d\u00e0ng h\u01a1n</p>
+                <h2 className="text-2xl font-extrabold text-slate-800 mb-1">Thông tin hồ sơ</h2>
+                <p className="text-slate-500 text-sm">Cập nhật thông tin để kết bạn dễ dàng hơn</p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-8">
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">T\u00ean hi\u1ec3n th\u1ecb <span className="text-rose-500">*</span></label>
+                <label className="block text-sm font-bold text-slate-700 mb-2">Tên hiển thị <span className="text-rose-500">*</span></label>
                 <input
                   id="profile-name"
                   type="text"
                   value={profileForm.name}
                   onChange={e => setProfileForm(p => ({ ...p, name: e.target.value }))}
-                  placeholder="Nh\u1eadp t\u00ean hi\u1ec3n th\u1ecb"
+                  placeholder="Nhập tên hiển thị"
                   className="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3.5 outline-none transition text-slate-800 font-medium"
                 />
               </div>
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">S\u1ed1 \u0111i\u1ec7n tho\u1ea1i</label>
+                <label className="block text-sm font-bold text-slate-700 mb-2">Số điện thoại</label>
                 <input
                   id="profile-phone"
                   type="tel"
@@ -240,7 +240,7 @@ export default function ProfilePage() {
                 />
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-bold text-slate-700 mb-2">Link Facebook c\u00e1 nh\u00e2n</label>
+                <label className="block text-sm font-bold text-slate-700 mb-2">Link Facebook cá nhân</label>
                 <div className="flex bg-slate-50 border border-slate-200 rounded-xl focus-within:bg-white focus-within:border-sky-500 focus-within:ring-2 focus-within:ring-sky-500/20 transition overflow-hidden">
                   <div className="bg-slate-100/50 text-slate-400 px-4 py-3.5 border-r border-slate-200 font-mono text-sm hidden sm:block">facebook.com/</div>
                   <input
@@ -254,36 +254,36 @@ export default function ProfilePage() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">S\u1ed1/\u0110\u01b0\u1eddng/Ph\u01b0\u1eddng</label>
+                <label className="block text-sm font-bold text-slate-700 mb-2">Số/Đường/Phường</label>
                 <input
                   id="profile-address"
                   type="text"
                   value={profileForm.address}
                   onChange={e => setProfileForm(p => ({ ...p, address: e.target.value }))}
-                  placeholder="Ph\u01b0\u1eddng 12, Qu\u1eadn 10"
+                  placeholder="Phường 12, Quận 10"
                   className="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 rounded-xl px-4 py-3.5 outline-none transition text-slate-800 font-medium"
                 />
               </div>
               <div>
                 <label className="block text-sm font-bold text-slate-700 mb-2 flex items-center justify-between">
-                  Hi\u1ec3n th\u1ecb li\u00ean h\u1ec7
+                  Hiển thị liên hệ
                   <span className="text-[10px] text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md font-semibold flex items-center gap-1 border border-emerald-100">
-                    <Shield className="w-3 h-3" /> B\u1ea3o m\u1eadt
+                    <Shield className="w-3 h-3" /> Bảo mật
                   </span>
                 </label>
                 <select className="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-sky-500 rounded-xl px-4 py-3.5 outline-none transition text-slate-800 font-medium cursor-pointer">
-                  <option>C\u00f4ng khai</option>
-                  <option defaultValue="selected">Ch\u1ec9 th\u00e0nh vi\u00ean \u0111\u0103ng nh\u1eadp</option>
-                  <option>Ri\u00eang t\u01b0</option>
+                  <option>Công khai</option>
+                  <option defaultValue="selected">Chỉ thành viên đăng nhập</option>
+                  <option>Riêng tư</option>
                 </select>
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
-                  Tr\u00ecnh \u0111\u1ed9 c\u1ee7a b\u1ea1n
+                  Trình độ của bạn
                   <div className="group relative cursor-help">
                     <Info className="w-4 h-4 text-slate-300 hover:text-sky-500 transition-colors" />
                     <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-[280px] bg-slate-800 text-white text-xs p-3 rounded-xl opacity-0 invisible group-hover:visible group-hover:opacity-100 transition shadow-xl z-10 pointer-events-none leading-relaxed text-center">
-                      Gi\u00fap h\u1ec7 th\u1ed1ng v\u00e0 ng\u01b0\u1eddi ch\u01a1i kh\u00e1c gh\u00e9p b\u1ea1n v\u00e0o c\u00e1c k\u00e8o ph\u00f9 h\u1ee3p.
+                      Giúp hệ thống và người chơi khác ghép bạn vào các kèo phù hợp.
                     </div>
                   </div>
                 </label>
@@ -315,8 +315,8 @@ export default function ProfilePage() {
                 className="w-full sm:w-auto bg-sky-500 text-white font-bold px-10 py-4 rounded-xl shadow-[0_4px_14px_rgba(14,165,233,0.3)] hover:bg-sky-600 hover:shadow-[0_6px_20px_rgba(14,165,233,0.4)] transition-all flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-60"
               >
                 {isSaving
-                  ? <><div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> \u0110ang l\u01b0u...</>
-                  : <><Check className="w-5 h-5" /> L\u01b0u thay \u0111\u1ed5i</>}
+                  ? <><div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> Đang lưu...</>
+                  : <><Check className="w-5 h-5" /> Lưu thay đổi</>}
               </button>
             </div>
           </div>

@@ -36,7 +36,7 @@ export default function RankingPage() {
 
   const top3   = PODIUM_ORDER.map(i => data[i]).filter(Boolean);
   const others = data.slice(3);
-  const valueLabel = activeTab === 'tac-gia' ? 'B\u00e0i \u0111\u0103ng' : 'K\u00e8o \u0111\u0103ng';
+  const valueLabel = activeTab === 'tac-gia' ? 'Bài đăng' : 'Kèo đăng';
   const valueKey   = activeTab === 'tac-gia' ? 'posts' : 'activePosts';
 
   return (
@@ -47,11 +47,11 @@ export default function RankingPage() {
         <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-slate-100 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center relative overflow-hidden gap-6">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-amber-500" />
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-800 tracking-tight">
-            X\u1ebfp h\u1ea1ng <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-slate-400 to-amber-500">h\u00f4m nay</span>
+            Xếp hạng <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-slate-400 to-amber-500">hôm nay</span>
           </h1>
           <div className="flex gap-3 items-center w-full md:w-auto">
             <div className="flex flex-1 md:flex-none bg-white border border-slate-200 rounded-2xl p-1.5 shadow-sm">
-              {([['today', 'Ng\u00e0y', 'Nh\u1ecbp hi\u1ec7n t\u1ea1i'], ['week', 'Tu\u1ea7n', '7 ng\u00e0y g\u1ea7n nh\u1ea5t']] as const).map(([val, label, sub]) => (
+              {([['today', 'Ngày', 'Nhịp hiện tại'], ['week', 'Tuần', '7 ngày gần nhất']] as const).map(([val, label, sub]) => (
                 <button
                   key={val}
                   id={`period-${val}`}
@@ -69,7 +69,7 @@ export default function RankingPage() {
               id="btn-refresh-leaderboard"
               onClick={fetchLeaderboard}
               className="w-12 h-12 flex-shrink-0 bg-white border border-slate-200 rounded-2xl flex items-center justify-center shadow-sm hover:bg-slate-50 text-slate-600 transition active:scale-95"
-              aria-label="L\u00e0m m\u1edbi"
+              aria-label="Làm mới"
             >
               <RefreshCcw className={`w-5 h-5 ${isLoading ? 'animate-spin' : ''}`} />
             </button>
@@ -79,8 +79,8 @@ export default function RankingPage() {
         {/* Type tabs */}
         <div className="bg-white rounded-[1.5rem] p-2 shadow-sm border border-slate-100 flex gap-2 mb-8 w-fit max-w-full overflow-x-auto">
           {[
-            { id: 'tac-gia', label: 'T\u00e1c gi\u1ea3', sub: 'Ng\u01b0\u1eddi \u0111\u0103ng n\u1ed5i b\u1eadt', icon: Shield,  active: 'bg-blue-50 text-blue-600' },
-            { id: 'san',     label: 'S\u00e2n',     sub: '\u0110i\u1ec3m n\u00f3ng giao l\u01b0u', icon: MapPin, active: 'bg-emerald-50 text-emerald-600' },
+            { id: 'tac-gia', label: 'Tác giả', sub: 'Người đăng nổi bật', icon: Shield,  active: 'bg-blue-50 text-blue-600' },
+            { id: 'san',     label: 'Sân',     sub: 'Điểm nóng giao lưu', icon: MapPin, active: 'bg-emerald-50 text-emerald-600' },
           ].map(tab => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id as any;
@@ -108,30 +108,30 @@ export default function RankingPage() {
           <div className="flex justify-between items-start mb-12">
             <div>
               <span className="bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-3 inline-block border border-blue-200">
-                {activeTab === 'tac-gia' ? 'B\u1ea3ng t\u00e1c gi\u1ea3' : 'B\u1ea3ng s\u00e2n'}
+                {activeTab === 'tac-gia' ? 'Bảng tác giả' : 'Bảng sân'}
               </span>
               <h2 className="text-3xl font-extrabold text-slate-800 tracking-tight">
-                X\u1ebfp h\u1ea1ng {activeTab === 'tac-gia' ? 't\u00e1c gi\u1ea3' : 's\u00e2n'}
+                Xếp hạng {activeTab === 'tac-gia' ? 'tác giả' : 'sân'}
               </h2>
             </div>
             <div className="bg-white border border-slate-200 px-5 py-2.5 rounded-2xl text-center shadow-sm">
               <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">
-                {period === 'today' ? 'H\u00f4m nay' : '7 ng\u00e0y'}
+                {period === 'today' ? 'Hôm nay' : '7 ngày'}
               </div>
-              <div className="text-xl font-black text-slate-800">{data.length} v\u1ecb tr\u00ed</div>
+              <div className="text-xl font-black text-slate-800">{data.length} vị trí</div>
             </div>
           </div>
 
           {isLoading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-4">
               <div className="w-12 h-12 border-4 border-slate-200 border-t-amber-400 rounded-full animate-spin" />
-              <p className="text-slate-400 font-medium">\u0110ang t\u1ea3i b\u1ea3ng x\u1ebfp h\u1ea1ng...</p>
+              <p className="text-slate-400 font-medium">Đang tải bảng xếp hạng...</p>
             </div>
           ) : data.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 gap-4">
               <Trophy className="w-16 h-16 text-slate-200" />
-              <p className="text-slate-500 font-medium text-lg">Ch\u01b0a c\u00f3 d\u1eef li\u1ec7u</p>
-              <p className="text-slate-400 text-sm">H\u00e3y \u0111\u0103ng b\u00e0i \u0111\u1ec3 l\u00ean b\u1ea3ng x\u1ebfp h\u1ea1ng!</p>
+              <p className="text-slate-500 font-medium text-lg">Chưa có dữ liệu</p>
+              <p className="text-slate-400 text-sm">Hãy đăng bài để lên bảng xếp hạng!</p>
             </div>
           ) : (
             <>

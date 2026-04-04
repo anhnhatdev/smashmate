@@ -10,10 +10,10 @@ import {
 } from 'lucide-react';
 
 const CATEGORIES = [
-  { id: 'tuyen-keo', label: 'T\u00ecm k\u00e8o',  icon: Users,        color: 'text-blue-500'   },
-  { id: 'pass-san',  label: 'Pass s\u00e2n', icon: MapPin,        color: 'text-emerald-500' },
-  { id: 'mua-ban',   label: 'Mua b\u00e1n',  icon: Store,         color: 'text-amber-500'  },
-  { id: 'lop-day',   label: 'L\u1edbp d\u1ea1y', icon: GraduationCap, color: 'text-purple-500'  },
+  { id: 'tuyen-keo', label: 'Tìm kèo',  icon: Users,        color: 'text-blue-500'   },
+  { id: 'pass-san',  label: 'Pass sân', icon: MapPin,        color: 'text-emerald-500' },
+  { id: 'mua-ban',   label: 'Mua bán',  icon: Store,         color: 'text-amber-500'  },
+  { id: 'lop-day',   label: 'Lớp dạy', icon: GraduationCap, color: 'text-purple-500'  },
   { id: 'clb',       label: 'CLB',       icon: Building2,    color: 'text-orange-500' },
 ];
 
@@ -64,16 +64,16 @@ export default function InterestsPage() {
           <div className="flex items-start gap-4 text-white">
             <Heart className="w-8 h-8 fill-white text-white mt-1" />
             <div>
-              <h1 className="text-2xl md:text-3xl font-bold mb-1">B\u00e0i vi\u1ebft quan t\u00e2m</h1>
-              <p className="text-rose-100 font-medium opacity-90">{interests.length} b\u00e0i vi\u1ebft \u0111\u00e3 l\u01b0u</p>
+              <h1 className="text-2xl md:text-3xl font-bold mb-1">Bài viết quan tâm</h1>
+              <p className="text-rose-100 font-medium opacity-90">{interests.length} bài viết đã lưu</p>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
             <button className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 border border-white/10 text-white px-5 py-2.5 rounded-xl font-bold transition">
-              <Share2 className="w-4 h-4" /> Chia s\u1ebb tab n\u00e0y
+              <Share2 className="w-4 h-4" /> Chia sẻ tab này
             </button>
             <Link href="/feed" className="flex-1 md:flex-none flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 border border-white/10 text-white px-5 py-2.5 rounded-xl font-bold transition">
-              <ArrowLeft className="w-4 h-4" /> V\u1ec1 Feed
+              <ArrowLeft className="w-4 h-4" /> Về Feed
             </Link>
           </div>
         </div>
@@ -81,7 +81,7 @@ export default function InterestsPage() {
         {/* Info alert */}
         <div className="mt-6 bg-blue-50 border border-blue-100 rounded-xl p-4 flex items-start gap-3 text-blue-800 text-sm">
           <Info className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
-          <p>D\u1eef li\u1ec7u \u0111\u01b0\u1ee3c \u0111\u1ed3ng b\u1ed9 theo th\u1eddi gian th\u1ef1c. Nh\u1ea5n <Heart className="w-4 h-4 inline-block text-rose-500 fill-rose-100 mx-1 align-sub" /> tr\u00ean b\u00e0i \u0111\u0103ng ngo\u00e0i Feed \u0111\u1ec3 l\u01b0u v\u00e0o \u0111\u00e2y.</p>
+          <p>Dữ liệu được đồng bộ theo thời gian thực. Nhấn <Heart className="w-4 h-4 inline-block text-rose-500 fill-rose-100 mx-1 align-sub" /> trên bài đăng ngoài Feed để lưu vào đây.</p>
         </div>
 
         {/* Category tabs */}
@@ -112,10 +112,10 @@ export default function InterestsPage() {
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-2 text-sm font-bold text-slate-500">
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-              {interests.length} b\u00e0i trong m\u1ee5c n\u00e0y
+              {interests.length} bài trong mục này
             </div>
             <button className="flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition shadow-sm">
-              M\u1edbi nh\u1ea5t <ChevronDown className="w-4 h-4 text-slate-400" />
+              Mới nhất <ChevronDown className="w-4 h-4 text-slate-400" />
             </button>
           </div>
 
@@ -123,25 +123,25 @@ export default function InterestsPage() {
           {!session ? (
             <div className="bg-white border-2 border-dashed border-slate-200 rounded-[2rem] p-12 flex flex-col items-center justify-center text-center shadow-sm">
               <Heart className="w-12 h-12 text-slate-300 mb-4 stroke-[1.5]" />
-              <h3 className="text-xl font-bold text-slate-800 mb-2">Vui l\u00f2ng \u0111\u0103ng nh\u1eadp</h3>
-              <p className="text-slate-500 text-sm mb-6">\u0110\u0103ng nh\u1eadp \u0111\u1ec3 xem danh s\u00e1ch b\u00e0i vi\u1ebft \u0111\u00e3 l\u01b0u</p>
+              <h3 className="text-xl font-bold text-slate-800 mb-2">Vui lòng đăng nhập</h3>
+              <p className="text-slate-500 text-sm mb-6">Đăng nhập để xem danh sách bài viết đã lưu</p>
             </div>
           ) : isLoading ? (
             <div className="flex flex-col items-center justify-center py-16 gap-4">
               <div className="w-10 h-10 border-4 border-rose-100 border-t-rose-500 rounded-full animate-spin" />
-              <p className="text-slate-400 font-medium text-sm">\u0110ang t\u1ea3i...</p>
+              <p className="text-slate-400 font-medium text-sm">Đang tải...</p>
             </div>
           ) : interests.length === 0 ? (
             <div className="bg-white border-2 border-dashed border-slate-200 rounded-[2rem] p-12 md:p-20 flex flex-col items-center justify-center text-center shadow-sm">
               <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mb-6 border border-slate-100 shadow-inner">
                 <XCircle className="w-12 h-12 text-slate-300 stroke-[1.5]" />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-slate-800 mb-2">Ch\u01b0a c\u00f3 b\u00e0i vi\u1ebft quan t\u00e2m n\u00e0o</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-slate-800 mb-2">Chưa có bài viết quan tâm nào</h3>
               <p className="text-slate-500 text-sm md:text-base max-w-md mx-auto mb-8 leading-relaxed">
-                Nh\u1ea5n v\u00e0o bi\u1ec3u t\u01b0\u1ee3ng <Heart className="w-4 h-4 inline-block text-rose-500 fill-rose-500 mx-1 align-sub" /> tr\u00ean b\u00e0i vi\u1ebft \u1edf trang Feed \u0111\u1ec3 l\u01b0u l\u1ea1i
+                Nhấn vào biểu tượng <Heart className="w-4 h-4 inline-block text-rose-500 fill-rose-500 mx-1 align-sub" /> trên bài viết ở trang Feed để lưu lại
               </p>
               <Link href="/feed" className="bg-white border-2 border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50 font-bold px-8 py-3.5 rounded-full transition-all shadow-sm">
-                Kh\u00e1m ph\u00e1 Feed
+                Khám phá Feed
               </Link>
             </div>
           ) : (
@@ -150,7 +150,7 @@ export default function InterestsPage() {
                 <div key={post.id} className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-rose-200 transition shadow-sm hover:shadow-md">
                   <div className="flex flex-col gap-2">
                     <h3 className="font-bold text-slate-800 text-lg">
-                      T\u00ecm K\u00e8o: s\u00e2n {post.courtName || 'Ch\u01b0a c\u00f3 t\u00ean'}
+                      Tìm Kèo: sân {post.courtName || 'Chưa có tên'}
                     </h3>
                     <div className="flex items-center flex-wrap gap-4 text-sm font-medium text-slate-500">
                       <div className="flex items-center gap-1.5 text-blue-600">
@@ -162,20 +162,20 @@ export default function InterestsPage() {
                         {post.startTime} - {post.endTime}
                       </div>
                       <div className="text-[11px] text-slate-400">
-                        \u0110\u00e3 l\u01b0u {new Date(post.savedAt).toLocaleDateString('vi-VN')}
+                        Đã lưu {new Date(post.savedAt).toLocaleDateString('vi-VN')}
                       </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <Link href="/feed" className="px-4 py-2 bg-blue-50 border border-blue-100 text-blue-600 rounded-xl text-sm font-bold hover:bg-blue-100 transition">
-                      Xem b\u00e0i
+                      Xem bài
                     </Link>
                     <button
                       id={`remove-interest-${post.id}`}
                       onClick={() => removeInterest(post.id)}
                       className="px-4 py-2 bg-rose-50 border border-rose-100 text-rose-500 rounded-xl text-sm font-bold hover:bg-rose-100 transition flex items-center gap-1.5"
                     >
-                      <Trash2 className="w-4 h-4" /> B\u1ecf l\u01b0u
+                      <Trash2 className="w-4 h-4" /> Bỏ lưu
                     </button>
                   </div>
                 </div>

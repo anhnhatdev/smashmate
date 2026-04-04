@@ -10,7 +10,7 @@ const DynamicMap = dynamic(() => import('@/components/MapComponent'), {
   loading: () => (
     <div className="w-full h-full flex items-center justify-center bg-slate-50 text-slate-400 flex-col gap-3">
       <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
-      <p className="font-medium text-sm">\u0110ang t\u1ea3i b\u1ea3n \u0111\u1ed3...</p>
+      <p className="font-medium text-sm">Đang tải bản đồ...</p>
     </div>
   ),
 });
@@ -63,14 +63,14 @@ export default function SanPage() {
             <div className="flex justify-between items-start">
               <div>
                 <h1 className="font-bold text-lg text-slate-800 flex items-center gap-2 mb-1">
-                  <MapPin className="w-5 h-5 text-sky-500" /> Danh s\u00e1ch s\u00e2n
+                  <MapPin className="w-5 h-5 text-sky-500" /> Danh sách sân
                 </h1>
                 <p className="text-xs font-medium text-slate-500">
-                  {courts.length} s\u00e2n \u00b7 {totalActivePosts} b\u00e0i \u0111\u0103ng
+                  {courts.length} sân · {totalActivePosts} bài đăng
                 </p>
               </div>
               <button className="flex items-center gap-1.5 bg-blue-50 hover:bg-blue-100 border border-sky-500/20 text-sky-500 px-3 py-1.5 rounded-xl text-sm font-bold transition">
-                <SlidersHorizontal className="w-4 h-4" /> B\u1ed9 l\u1ecdc
+                <SlidersHorizontal className="w-4 h-4" /> Bộ lọc
               </button>
             </div>
 
@@ -80,7 +80,7 @@ export default function SanPage() {
               <input
                 id="san-search"
                 type="text"
-                placeholder="T\u00ecm s\u00e2n theo t\u00ean, \u0111\u1ecba ch\u1ec9, qu\u1eadn..."
+                placeholder="Tìm sân theo tên, địa chỉ, quận..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 className="w-full pl-9 pr-3 py-2 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition"
@@ -94,7 +94,7 @@ export default function SanPage() {
               className={`w-full ${isLocating ? 'bg-sky-100 border-sky-200' : 'bg-sky-50 border-sky-100 hover:bg-sky-100'} border text-sky-500 py-2.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition`}
             >
               <MousePointerClick className="w-4 h-4" />
-              B\u1eadt v\u1ecb tr\u00ed \u0111\u1ec3 xem kho\u1ea3ng c\u00e1ch
+              Bật vị trí để xem khoảng cách
             </button>
           </div>
 
@@ -103,7 +103,7 @@ export default function SanPage() {
             {courts.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full opacity-60">
                 <MapPin className="w-12 h-12 text-slate-300 mb-3" />
-                <p className="text-sm font-medium text-slate-500">Kh\u00f4ng t\u00ecm th\u1ea5y s\u00e2n n\u00e0o</p>
+                <p className="text-sm font-medium text-slate-500">Không tìm thấy sân nào</p>
               </div>
             ) : (
               courts.map(court => (
@@ -117,17 +117,17 @@ export default function SanPage() {
                       {court.name}
                     </h3>
                     <div className="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
-                      \u0110ang m\u1edf
+                      Đang mở
                     </div>
                   </div>
                   <p className="text-xs text-slate-500 mb-3 line-clamp-1">{court.address}</p>
                   <div className="flex items-center justify-between text-xs mt-auto pt-3 border-t border-slate-100">
                     <div className="flex items-center gap-1 font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                      {court.activePosts} k\u00e8o \u0111ang t\u00ecm
+                      {court.activePosts} kèo đang tìm
                     </div>
                     <button className="text-sky-500 font-medium hover:underline">
-                      Ch\u1ec9 \u0111\u01b0\u1eddng
+                      Chỉ đường
                     </button>
                   </div>
                 </div>
