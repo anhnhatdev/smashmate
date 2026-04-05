@@ -98,6 +98,11 @@ model Post {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([postType])
+  @@index([status])
+  @@index([eventDate])
+  @@index([authorId])
 }
 
 // =======================

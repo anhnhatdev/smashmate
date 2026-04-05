@@ -179,6 +179,16 @@ export default function Navbar() {
                   <div className="w-16 h-16 bg-amber-100 rounded-full mx-auto mb-4 flex items-center justify-center"><Coffee className="w-8 h-8 text-amber-700" /></div>
                   <h3 className="text-xl font-bold text-slate-800 mb-2">Cảm ơn bạn!</h3>
                   <p className="text-slate-500 text-sm mb-6 max-w-[280px] mx-auto">Nếu thấy <span className="font-bold text-[#0ea5e9]">SmashMate</span> hữu ích, hãy ủng hộ mình một ly cà phê!</p>
+                  
+                  <div className="mb-6 bg-white border-2 border-dashed border-amber-200 p-3 rounded-2xl shadow-sm inline-block mx-auto relative group transition hover:border-amber-400">
+                    <img 
+                      src="/ungho_qr.png" 
+                      alt="Ủng hộ QR" 
+                      className="w-[200px] h-[200px] object-contain rounded-lg shadow-inner"
+                    />
+                    <div className="mt-3 text-[10px] font-bold text-amber-600 tracking-wider">VIETCOMBANK | QUET DE UNG HO</div>
+                  </div>
+
                   <div className="bg-amber-50 text-amber-700 text-xs font-semibold p-4 rounded-xl border border-amber-100">
                     🙏 Mọi đóng góp đều giúp duy trì nền tảng miễn phí!
                   </div>
