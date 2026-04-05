@@ -96,21 +96,24 @@ export async function GET(req: Request) {
 
     const posts = await prisma.post.findMany({
       where,
-      include: { author: { select: { name: true, image: true } } },
+      include: { 
+        author: { select: { name: true, image: true } },
+        court: { select: { lat: true, lng: true } }
+      },
       orderBy: { createdAt: 'desc' },
     });
 
     let result = posts as any[];
 
-    // Optional geo-filter using Haversine
+    // Real geo-filter using Haversine and Court model
     if (userLat !== null && userLng !== null && radius !== null && radius > 0) {
       result = result
         .map((post) => {
-          const offset = ((post.courtName?.length ?? 5) % 15) * 0.01;
-          const mockLat = userLat + offset * 0.8;
-          const mockLng = userLng + offset * 0.8;
-          const dist = getDistanceKm(userLat, userLng, mockLat, mockLng);
-          return { ...post, distance: parseFloat(dist.toFixed(1)) };
+          if (post.court?.lat != null && post.court?.lng != null) {
+            const dist = getDistanceKm(userLat, userLng, post.court.lat, post.court.lng);
+            return { ...post, distance: parseFloat(dist.toFixed(1)) };
+          }
+          return { ...post, distance: Infinity };
         })
         .filter((post) => post.distance <= radius)
         .sort((a, b) => a.distance - b.distance);
@@ -144,6 +147,7 @@ export async function POST(req: Request) {
       data: {
         postType:     postType ?? 'tuyen-keo',
         courtName:    courtName ?? '',
+        courtId:      body.courtId || null,
         eventDate:    new Date(eventDate),
         startTime:    startTime ?? '',
         endTime:      endTime ?? '',
