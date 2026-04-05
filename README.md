@@ -146,7 +146,7 @@ Private — All rights reserved © 2026 SmashMate
 Kế hoạch dưới đây liệt kê các checklist công việc để nâng cấp **SmashMate** (dự án chính) trở nên hoàn thiện, kết hợp các tính năng nền tảng từ dự án tham chiếu (`smashmate-app`) và chuẩn hóa lại giao diện & kiến trúc backend.
 
 ### 1. Giao Diện (Frontend & UX)
-- [ ] **Đồng bộ Design System Premium**: Áp dụng triệt để ngôn ngữ thiết kế mới (hiệu ứng Glassmorphism, bóng đổ Glow, màu sắc gradient hiện đại) từ Landing Page (`/page.tsx`) sang tất cả các trang phụ (`/feed`, `/san`, `/pricing`, `/profile`, `/xep-hang`).
+- [x] **Đồng bộ Design System Premium**: Áp dụng triệt để ngôn ngữ thiết kế mới (hiệu ứng Glassmorphism, bóng đổ Glow, màu sắc gradient hiện đại) từ Landing Page (`/page.tsx`) sang tất cả các trang phụ (`/feed`, `/san`, `/pricing`, `/profile`, `/xep-hang`).
 - [ ] **Responsive & Micro-animations**: Tối ưu Navbar, Create Post Modal, và các thẻ bài đăng cho trải nghiệm mượt mà trên Mobile. Bổ sung các hiệu ứng chuyển cảnh (sử dụng Tailwind CSS animations hoặc Framer Motion).
 - [ ] **Tối ưu Trải nghiệm Data Fetching**: Thêm các Component Skeleton/Loading states khi đang tải danh sách bài đăng (`/feed`), hiển thị điểm trên Map (`/san`), hoặc đang chờ AI trả lời, tránh tình trạng giật lag giao diện.
 

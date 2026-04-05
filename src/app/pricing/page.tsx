@@ -95,7 +95,7 @@ export default function PricingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
 
             {/* Free */}
-            <div className="bg-white border border-slate-200 rounded-[2rem] p-6 shadow-sm flex flex-col">
+            <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] group hover:-translate-y-1 transition-all flex flex-col">
               <div className="mt-4 mb-4 flex items-center gap-3">
                 <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-600 border border-slate-200 shadow-sm"><Zap className="w-6 h-6" /></div>
                 <div>
@@ -113,7 +113,7 @@ export default function PricingPage() {
             </div>
 
             {/* Pro (highlighted) */}
-            <div className="bg-white border-2 border-blue-400 rounded-[2rem] p-6 shadow-[0_12px_40px_rgba(59,130,246,0.15)] flex flex-col md:-translate-y-4 relative">
+            <div className="bg-white/90 backdrop-blur-xl border-[3px] border-blue-400 rounded-[2rem] p-6 shadow-[0_12px_40px_rgba(59,130,246,0.25)] flex flex-col md:-translate-y-4 relative group hover:-translate-y-6 transition-all duration-300 z-10">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-100 text-blue-600 text-xs font-black px-4 py-2 rounded-full flex items-center gap-1.5 shadow-sm border border-blue-200">
                 <Star className="w-3.5 h-3.5 fill-blue-600" /> PHỔ BIẾN NHẤT
               </div>
@@ -135,7 +135,7 @@ export default function PricingPage() {
             </div>
 
             {/* Business */}
-            <div className="bg-orange-50/30 border border-orange-200 rounded-[2rem] p-6 shadow-sm flex flex-col">
+            <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[2rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] group hover:-translate-y-1 transition-all flex flex-col relative overflow-hidden">
               <div className="mt-4 mb-4 flex items-center gap-3">
                 <div className="w-12 h-12 bg-[#f97316] rounded-2xl flex items-center justify-center text-white shadow-[0_4px_12px_rgba(249,115,22,0.4)]"><Building2 className="w-6 h-6" /></div>
                 <div>
@@ -160,7 +160,7 @@ export default function PricingPage() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight mb-2">Tất cả tính năng theo từng gói</h2>
             <p className="text-slate-500">Xem chính xác bạn nhận được gì</p>
           </div>
-          <div className="bg-white border border-slate-200 rounded-[2rem] overflow-x-auto shadow-sm">
+          <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[2rem] overflow-x-auto shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
             <table className="w-full text-sm text-left">
               <thead>
                 <tr className="border-b border-slate-200">
@@ -192,7 +192,7 @@ export default function PricingPage() {
               { icon: Lock,        bg: 'bg-blue-500',    border: 'border-blue-100',    title: 'Không tự gia hạn',  desc: 'Bạn chủ động, không bind thẻ' },
               { icon: Coffee,      bg: 'bg-amber-500',   border: 'border-amber-100',   title: 'Giá = 1 ly cà phê',  desc: '49.000đ / tháng — ai cũng mua được' },
             ].map(({ icon: Icon, bg, border, title, desc }) => (
-              <div key={title} className={`bg-white border ${border} rounded-2xl p-6 shadow-sm flex items-start gap-4 hover:shadow-md transition`}>
+              <div key={title} className={`bg-white/80 backdrop-blur-xl border border-white rounded-2xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-start gap-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition hover:-translate-y-1`}>
                 <div className={`w-12 h-12 rounded-xl ${bg} text-white flex flex-shrink-0 items-center justify-center shadow-sm`}><Icon className="w-6 h-6" /></div>
                 <div>
                   <div className="font-bold text-slate-800 mb-1">{title}</div>

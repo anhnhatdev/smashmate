@@ -83,7 +83,7 @@ export default function ProfilePage() {
       <main className="flex-1 w-full max-w-[1000px] mx-auto px-4 py-8 md:py-10">
 
         {/* Tab bar */}
-        <div className="flex overflow-x-auto hide-scrollbar bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm w-max mb-8">
+        <div className="flex overflow-x-auto hide-scrollbar bg-white/60 backdrop-blur-xl p-1.5 rounded-2xl border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] w-max mb-8">
           {TABS.map(tab => (
             <button
               key={tab.id}
@@ -111,7 +111,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Identity card */}
-        <div className="bg-white border text-center md:text-left border-slate-200 rounded-[2rem] p-6 md:p-8 shadow-sm flex flex-col md:flex-row items-center gap-6 mb-8 relative overflow-hidden">
+        <div className="bg-white/80 backdrop-blur-xl border border-white text-center md:text-left rounded-[2rem] p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col md:flex-row items-center gap-6 mb-8 relative overflow-hidden">
           <div className="relative group cursor-pointer flex-shrink-0">
             <div className="w-24 h-24 rounded-full bg-gradient-to-br from-sky-500 to-blue-400 text-white flex items-center justify-center font-bold text-4xl shadow-md border-4 border-slate-50 overflow-hidden">
               {session?.user?.image
@@ -142,7 +142,7 @@ export default function ProfilePage() {
             { label: 'AI search hôm nay',   value: 0, icon: <Sparkles className="w-3.5 h-3.5" /> },
             { label: 'Premium hôm nay',     value: 0, icon: <Zap className="w-3.5 h-3.5 text-amber-500" /> },
           ].map((stat, i) => (
-            <div key={i} className={`bg-white border ${stat.accent ? 'border-blue-100' : 'border-slate-200'} rounded-[1.5rem] p-6 shadow-sm hover:border-slate-300 transition flex flex-col`}>
+            <div key={i} className={`bg-white/80 backdrop-blur-md border border-white rounded-[1.5rem] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:-translate-y-1 transition-all duration-300 shadow-sm flex flex-col`}>
               <div className={`text-xs font-bold ${stat.accent ? 'text-sky-500' : 'text-slate-500'} mb-2 flex items-center gap-1.5 tracking-wide uppercase`}>
                 {stat.icon} {stat.label}
               </div>
@@ -154,7 +154,7 @@ export default function ProfilePage() {
 
         {/* ── TAB: my posts ── */}
         {activeTab === 'bai-dang' && (
-          <div className="bg-white border border-slate-200 rounded-[2rem] p-6 md:p-10 shadow-sm">
+          <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[2rem] p-6 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
             <div className="flex items-center gap-4 mb-8 pb-6 border-b border-slate-100">
               <div className="w-12 h-12 bg-blue-50 text-sky-500 rounded-2xl flex items-center justify-center shadow-inner">
                 <Check className="w-6 h-6" />
@@ -205,7 +205,7 @@ export default function ProfilePage() {
 
         {/* ── TAB: profile form ── */}
         {activeTab === 'ho-so' && (
-          <div className="bg-white border border-slate-200 rounded-[2rem] p-6 md:p-10 shadow-sm">
+          <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[2rem] p-6 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
             <div className="flex items-center gap-4 mb-8 pb-6 border-b border-slate-100">
               <div className="w-12 h-12 bg-blue-50 text-sky-500 rounded-2xl flex items-center justify-center shadow-inner">
                 <Edit3 className="w-6 h-6" />

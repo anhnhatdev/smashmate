@@ -44,7 +44,7 @@ export default function RankingPage() {
       <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* Page header */}
-        <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-sm border border-slate-100 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center relative overflow-hidden gap-6">
+        <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white mb-6 flex flex-col md:flex-row justify-between items-start md:items-center relative overflow-hidden gap-6">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-indigo-500 to-amber-500" />
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-800 tracking-tight">
             Xếp hạng <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-slate-400 to-amber-500">hôm nay</span>
@@ -77,7 +77,7 @@ export default function RankingPage() {
         </div>
 
         {/* Type tabs */}
-        <div className="bg-white rounded-[1.5rem] p-2 shadow-sm border border-slate-100 flex gap-2 mb-8 w-fit max-w-full overflow-x-auto">
+        <div className="bg-white/80 backdrop-blur-xl rounded-[1.5rem] p-2 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white flex gap-2 mb-8 w-fit max-w-full overflow-x-auto">
           {[
             { id: 'tac-gia', label: 'Tác giả', sub: 'Người đăng nổi bật', icon: Shield,  active: 'bg-blue-50 text-blue-600' },
             { id: 'san',     label: 'Sân',     sub: 'Điểm nóng giao lưu', icon: MapPin, active: 'bg-emerald-50 text-emerald-600' },
@@ -104,7 +104,7 @@ export default function RankingPage() {
         </div>
 
         {/* Leaderboard card */}
-        <div className="bg-slate-50/50 border border-slate-200/80 rounded-[2.5rem] p-6 md:p-10 shadow-sm">
+        <div className="bg-white/60 backdrop-blur-md border border-white rounded-[2.5rem] p-6 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
           <div className="flex justify-between items-start mb-12">
             <div>
               <span className="bg-blue-100 text-blue-600 text-xs font-bold px-3 py-1 rounded-full mb-3 inline-block border border-blue-200">
